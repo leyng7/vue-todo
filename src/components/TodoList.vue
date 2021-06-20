@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
         <span v-on:click="toggleComplete(todoItem, index)">
           <font-awesome-icon class="checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" icon="check"/>
@@ -10,7 +10,7 @@
           <font-awesome-icon icon="trash-alt"/>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -69,5 +69,13 @@ li {
   color: #b3adad;
 }
 
+/* 리스트 아이템 트랜지션 효과 */
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
 
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>
